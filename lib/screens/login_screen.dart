@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -6,6 +7,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen>{
   bool _obscurePassword = true;
   final _formKey = GlobalKey<FormState>();
+  String? passwordError;
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -57,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen>{
                   },
                   ),
                   SizedBox(height: 40),
-                  TextField(
+                  TextFormField(
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -78,8 +80,16 @@ class _LoginScreenState extends State<LoginScreen>{
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
+                      errorText: passwordError
                     ),
                     obscureText: _obscurePassword,
+                    validator: (value){
+                      if (value == null || value.isEmpty){
+                        return "Please enter your password";}
+                      else if (value.length < 6){
+                        return "Password must be at least 6 characters";}
+                      return null;
+                    },
                   ),
                   SizedBox(height: 40),
                   Align(
@@ -91,11 +101,14 @@ class _LoginScreenState extends State<LoginScreen>{
                       ),),),),
                   SizedBox(height: 40),
                   ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!.validate()){
-                          print('Form is valid');
+                          print('Okna uzupełnione poprawnie');
+                          final preferences = await SharedPreferences.getInstance();
+                          await preferences.setBool('isLogged', true);
+                          Navigator.pushNamed(context, '/home');
                         } else {
-                          print('Form is not valid');
+                          print('Okna nie uzupełniono poprawnie');
                         }
                         // DO DODANIA LOGOWANIE
                       },
