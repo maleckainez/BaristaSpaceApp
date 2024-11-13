@@ -7,6 +7,7 @@ class RegisterScreen extends StatefulWidget {
 }
 class _RegisterScreenState extends State<RegisterScreen>{
   bool _obscurePassword = true;
+  bool _obscurePassword2 = true;
   final _formKey = GlobalKey<FormState>();
   String? passwordError;
   String? emailError;
@@ -60,8 +61,112 @@ class _RegisterScreenState extends State<RegisterScreen>{
                           fontWeight: FontWeight.bold,
                           color: Color(4282849952)
                         )),
-                      )
-                    ],
+                      ),
+                      SizedBox(height: 46),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(
+                              color: Color(4288104447),
+                              width: 2.0,),
+                          ),
+                          labelText: 'Full Name',
+                          labelStyle: TextStyle(
+                            color: Color(0xFFB3B3B3)
+                          ),
+                          prefixIcon: Icon(Icons.person_outline_rounded, color: Color(4282849952)),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),),),
+                        validator: (value){
+                          if (value == null || value.isEmpty){
+                            return "No Name entered";
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 40),
+                      TextFormField(
+                        decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(
+                          color: Color(4288104447),
+                          width: 2.0,),),
+                          labelText: 'Email',
+                          labelStyle: TextStyle(
+                            color: Color(0xFFB3B3B3)
+                          ),
+                          prefixIcon: Icon(Icons.mail_outline, color: Color(4282849952)),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),),),
+                        validator: (value){
+                          if (value == null || value.isEmpty){
+                            return "No email or User Name entered";}
+                          else if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$").hasMatch(value)){
+                            return "Invalid e-mail format";
+                          }
+                          return null;
+                          },
+                      ),
+                      SizedBox(height: 40),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(
+                              color: Color(4288104447),
+                              width: 2.0),),
+                          labelText: 'Password',
+                          labelStyle: TextStyle(
+                            color: Color(0xFFB3B3B3)
+                          ),
+                          prefixIcon: Icon(Icons.lock_outline_rounded, color: Color(4282849952),),
+                            suffixIcon: IconButton(icon: Icon(_obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                                color: Color(4283256141)),
+                              onPressed: () {setState(() {_obscurePassword = !_obscurePassword;});},),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            errorText: passwordError
+                        ),
+                        obscureText: _obscurePassword,
+                        validator: (value){
+                          if (value == null || value.isEmpty){
+                            return "Please enter your password";}
+                          else if (value.length < 6){
+                            return "Password must be at least 6 characters";}
+                          return null;
+                        },
+                        ),
+                      SizedBox(height: 40),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                  color: Color(4288104447),
+                                  width: 2.0),),
+                            labelText: 'Confirm Password',
+                            labelStyle: TextStyle(color: Color(0xFFB3B3B3)),
+                            prefixIcon: Icon(Icons.lock_outline_rounded, color: Color(4282849952),),
+                            suffixIcon: IconButton(icon: Icon(_obscurePassword2 ? Icons.visibility_outlined: Icons.visibility_off_outlined,
+                                color: Color(4283256141)),
+                              onPressed: () {setState(() {_obscurePassword2 = !_obscurePassword2;});},),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            errorText: passwordError
+                        ),
+                        obscureText: _obscurePassword2,
+                        validator: (value){
+                          return null;
+                        },),
+                      SizedBox(height: 80),
+                      Center(
+                      child: OutlinedButton(onPressed: (){},
+                      child: Text('data'))
+                      ),],
                   ),
                 )
             ),
