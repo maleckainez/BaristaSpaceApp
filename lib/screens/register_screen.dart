@@ -9,7 +9,8 @@ class _RegisterScreenState extends State<RegisterScreen>{
   bool _obscurePassword = true;
   bool _obscurePassword2 = true;
   final _formKey = GlobalKey<FormState>();
-  String? passwordError;
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordConfirmController = TextEditingController();
   String? emailError;
   @override
   Widget build(BuildContext context){
@@ -99,7 +100,9 @@ class _RegisterScreenState extends State<RegisterScreen>{
                           ),
                           prefixIcon: Icon(Icons.mail_outline, color: Color(4282849952)),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),),),
+                            borderRadius: BorderRadius.circular(12),),
+                          errorText: emailError,
+                        ),
                         validator: (value){
                           if (value == null || value.isEmpty){
                             return "No email or User Name entered";}
@@ -111,6 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
                       ),
                       SizedBox(height: 40),
                       TextFormField(
+                        controller: passwordController,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -128,7 +132,6 @@ class _RegisterScreenState extends State<RegisterScreen>{
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            errorText: passwordError
                         ),
                         obscureText: _obscurePassword,
                         validator: (value){
@@ -144,6 +147,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
                         ),
                       SizedBox(height: 40),
                       TextFormField(
+                        controller: passwordConfirmController,
                         decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -159,10 +163,14 @@ class _RegisterScreenState extends State<RegisterScreen>{
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            errorText: passwordError
                         ),
                         obscureText: _obscurePassword2,
                         validator: (value){
+                          if (value == null || value.isEmpty){
+                            return "Please confirm your password";}
+                          else if (value != passwordController.text){
+                            return "Password must match!";
+                          }
                           return null;
                         },),
                       SizedBox(height: 80),
