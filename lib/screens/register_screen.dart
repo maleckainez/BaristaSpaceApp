@@ -164,9 +164,41 @@ class _RegisterScreenState extends State<RegisterScreen>{
                         },),
                       SizedBox(height: 80),
                       Center(
-                      child: OutlinedButton(onPressed: (){},
-                      child: Text('data'))
-                      ),],
+                      child: ElevatedButton(onPressed: () async {
+                        if (_formKey.currentState!.validate()){
+                          print('Formularz uzupełniony poprawnie');}
+                          else { print('Uzupełniono błędnie!');}
+                          },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(4290479336),
+                          minimumSize: Size(double.infinity, 50),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),),
+                        ),
+                      child: Text('Sign Up',
+                      style: TextStyle(
+                          fontSize: 15, color: Colors.white,
+                      ),),),
+                      ),
+                      SizedBox(height: 140),
+                      Center(
+                        child: TextButton(onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));},
+                          child: RichText(
+                            text: TextSpan(
+                              text: 'Already have an account ?',
+                              style: TextStyle(
+                                color: Color(4282849952),fontSize: 15.0,
+                              ),
+                            children: [TextSpan(
+                              text: ' Sign In',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,)
+                              ,),],)
+                            ,),
+                        ),
+                      ),
+                    ],
                   ),
                 )
             ),
