@@ -53,7 +53,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
                               ),),
                             ],
                           )),
-                      SizedBox(height: 101),
+                      SizedBox(height: 91),
                       Align(alignment: Alignment.centerLeft,
                         child: Text('Sign Up',
                         style: TextStyle(
@@ -136,6 +136,9 @@ class _RegisterScreenState extends State<RegisterScreen>{
                             return "Please enter your password";}
                           else if (value.length < 6){
                             return "Password must be at least 6 characters";}
+                          else if (!RegExp(r'^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).+$').hasMatch(value)){
+                            return "Password must have at least one uppercase letter and symbol";
+                          }
                           return null;
                         },
                         ),
@@ -151,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
                             labelStyle: TextStyle(color: Color(0xFFB3B3B3)),
                             prefixIcon: Icon(Icons.lock_outline_rounded, color: Color(4282849952),),
                             suffixIcon: IconButton(icon: Icon(_obscurePassword2 ? Icons.visibility_outlined: Icons.visibility_off_outlined,
-                                color: Color(4283256141)),
+                                color: Color(0xFF4D4D4D)),
                               onPressed: () {setState(() {_obscurePassword2 = !_obscurePassword2;});},),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -180,7 +183,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
                           fontSize: 15, color: Colors.white,
                       ),),),
                       ),
-                      SizedBox(height: 140),
+                      SizedBox(height: 130),
                       Center(
                         child: TextButton(onPressed: (){
                           Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));},
