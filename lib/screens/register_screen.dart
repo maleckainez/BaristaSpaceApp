@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'login_screen.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
