@@ -1,4 +1,5 @@
 import 'package:dzienniczek_baristy/screens/login_screen.dart';
+//import 'package:dzienniczek_baristy/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 void main() {
   runApp( MyApp());
