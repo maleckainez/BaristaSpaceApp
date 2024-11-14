@@ -25,7 +25,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             top: -40,
             right: -80,
             child: CircleWidget(142, Color(0xFFBB84E8))),
-        SafeArea(
+        AutofillGroup(
+        child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Form(
@@ -79,6 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         SizedBox(height: 46),
                         TextFormField(
+                          autofillHints: [AutofillHints.givenName, AutofillHints.familyName],
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -103,6 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         SizedBox(height: 40),
                         TextFormField(
+                          autofillHints: [AutofillHints.email],
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -133,6 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         SizedBox(height: 40),
                         TextFormField(
+                          autofillHints: [AutofillHints.password],
                           controller: passwordController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -177,6 +181,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         SizedBox(height: 40),
                         TextFormField(
+                          autofillHints: [AutofillHints.password],
                           controller: passwordConfirmController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -258,7 +263,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   )
               ),
             )
-        ),
+        )),
       ],),
     );
   }

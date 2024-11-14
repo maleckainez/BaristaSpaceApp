@@ -6,6 +6,7 @@ class ResetPasswordScreen extends StatefulWidget{
 }
 class _RPSState extends State<ResetPasswordScreen>{
   final _formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
   String? emailError;
 @override
   Widget build(BuildContext context){
@@ -29,6 +30,7 @@ class _RPSState extends State<ResetPasswordScreen>{
             right: -100,
             child: CircleWidget(300, Color(0xFF471AA0))),
         SafeArea(
+          child: AutofillGroup(
           child: Padding(
               padding: const EdgeInsets.all(20.0),
             child: Form(
@@ -76,6 +78,8 @@ class _RPSState extends State<ResetPasswordScreen>{
                                 color: Color(4282849952))),),
                       SizedBox(height: 40),
                       TextFormField(
+                        controller: emailController,
+                        autofillHints: [AutofillHints.email],
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -108,7 +112,7 @@ class _RPSState extends State<ResetPasswordScreen>{
                       Center(
                         child: ElevatedButton(onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-                            print('Formularz uzupełniony poprawnie');
+                            print('Formularz uzupełniony poprawnie: '+ emailController.text);
                           }
                           else {
                             print('Uzupełniono błędnie!');
@@ -151,7 +155,7 @@ class _RPSState extends State<ResetPasswordScreen>{
                   ),
                 )),
           ),
-        )
+        ),),
       ],
     ),
   );
