@@ -9,8 +9,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _obscurePassword = true;
   bool _obscurePassword2 = true;
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController passwordConfirmController = TextEditingController();
+  final passwordController = TextEditingController();
+  final passwordConfirmController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
   String? emailError;
 
   @override
@@ -80,6 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         SizedBox(height: 46),
                         TextFormField(
+                          controller: nameController,
                           autofillHints: [AutofillHints.givenName, AutofillHints.familyName],
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -105,6 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         SizedBox(height: 40),
                         TextFormField(
+                          controller: emailController,
                           autofillHints: [AutofillHints.email],
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -220,7 +224,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Center(
                           child: ElevatedButton(onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              print('Formularz uzupełniony poprawnie');
+                              print('Formularz uzupełniony poprawnie\ email: '+emailController.text+'\ name: '+nameController.text+"\ password:"+passwordController.text+"\ confirmed: "+passwordConfirmController.text);
                             }
                             else {
                               print('Uzupełniono błędnie!');
