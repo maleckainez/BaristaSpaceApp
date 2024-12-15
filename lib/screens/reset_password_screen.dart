@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
+import 'animations.dart';
 class ResetPasswordScreen extends StatefulWidget{
   @override
   _RPSState createState() => _RPSState();
@@ -41,8 +42,7 @@ class _RPSState extends State<ResetPasswordScreen>{
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextButton(onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => LoginScreen()));
+                        animatedNavigator(context, LoginScreen(), Offset(-1.0, 0.0));
                       },
                           style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
@@ -132,8 +132,7 @@ class _RPSState extends State<ResetPasswordScreen>{
                       SizedBox(height: 420,),
                       Center(
                         child: TextButton(onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
+                          animatedNavigator(context, LoginScreen(), Offset(-1.0, 0.0));
                         },
                           child: RichText(
                             text: TextSpan(

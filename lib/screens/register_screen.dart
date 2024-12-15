@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'login_screen.dart';
 import 'package:flutter/material.dart';
+import 'animations.dart';
 class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -40,8 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: [
                         //SizedBox(height: 39),
                         TextButton(onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
+                          animatedNavigator(context, LoginScreen(), Offset(0.0, -1.0));
                         },
                             style: TextButton.styleFrom(
                                 padding: EdgeInsets.zero,
@@ -71,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),),
                               ],
                             )),
-                        SizedBox(height: 91),
+                        SizedBox(height: 101),
                         Align(alignment: Alignment.centerLeft,
                           child: Text('Sign Up',
                               style: TextStyle(
@@ -241,11 +241,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 fontSize: 15, color: Colors.white,
                               ),),),
                         ),
-                        SizedBox(height: 130),
+                        SizedBox(height: 140),
                         Center(
                           child: TextButton(onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => LoginScreen()));
+                            animatedNavigator(context, LoginScreen(), Offset(0.0, -1.0));
                           },
                             child: RichText(
                               text: TextSpan(
