@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'login_screen.dart';
 import 'package:flutter/material.dart';
+import 'animations.dart';
 class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -9,8 +10,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _obscurePassword = true;
   bool _obscurePassword2 = true;
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController passwordConfirmController = TextEditingController();
+  final passwordController = TextEditingController();
+  final passwordConfirmController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
   String? emailError;
 
   @override
@@ -38,8 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: [
                         //SizedBox(height: 39),
                         TextButton(onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
+                          animatedNavigator(context, LoginScreen(), Offset(0.0, -1.0));
                         },
                             style: TextButton.styleFrom(
                                 padding: EdgeInsets.zero,
@@ -69,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),),
                               ],
                             )),
-                        SizedBox(height: 91),
+                        SizedBox(height: 101),
                         Align(alignment: Alignment.centerLeft,
                           child: Text('Sign Up',
                               style: TextStyle(
@@ -80,6 +82,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         SizedBox(height: 46),
                         TextFormField(
+                          controller: nameController,
                           autofillHints: [AutofillHints.givenName, AutofillHints.familyName],
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -105,6 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         SizedBox(height: 40),
                         TextFormField(
+                          controller: emailController,
                           autofillHints: [AutofillHints.email],
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -220,7 +224,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Center(
                           child: ElevatedButton(onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              print('Formularz uzupełniony poprawnie');
+                              print('Formularz uzupełniony poprawnie\ email: '+emailController.text+'\ name: '+nameController.text+"\ password:"+passwordController.text+"\ confirmed: "+passwordConfirmController.text);
                             }
                             else {
                               print('Uzupełniono błędnie!');
@@ -237,11 +241,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 fontSize: 15, color: Colors.white,
                               ),),),
                         ),
-                        SizedBox(height: 130),
+                        SizedBox(height: 140),
                         Center(
                           child: TextButton(onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => LoginScreen()));
+                            animatedNavigator(context, LoginScreen(), Offset(0.0, -1.0));
                           },
                             child: RichText(
                               text: TextSpan(
