@@ -9,9 +9,20 @@ class _RPSState extends State<ResetPasswordScreen>{
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   String? emailError;
+  @override
+  void dispose(){
+    emailController.dispose();
+    super.dispose();
+  }
 @override
   Widget build(BuildContext context){
-  return Scaffold(
+  return PopScope(
+    canPop: false,
+    onPopInvokedWithResult: (bool didPop, result){
+      if (didPop){return;}
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+  },
+  child: Scaffold(
     body: Stack(
       children: [
         Positioned(
@@ -157,7 +168,7 @@ class _RPSState extends State<ResetPasswordScreen>{
         ),),
       ],
     ),
-  );
+  ));
 }}
 class CircleWidget extends StatelessWidget {
   final double size;
