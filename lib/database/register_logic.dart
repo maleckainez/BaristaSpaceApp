@@ -8,7 +8,7 @@ Future<void> resetDatabase() async {
   final path = join(dbPath, 'users.db');
   if (await File(path).exists()) {
     await deleteDatabase(path);
-    print('Stara baza danych została usunięta.');
+    //print('Stara baza danych została usunięta.');
     loadDatabase();
   }
 }
@@ -24,8 +24,9 @@ Future<Database> loadDatabase() async {
       final bytes = data.buffer.asUint8List();
       await File(path).writeAsBytes(bytes);
     } catch (e){
-      print('BŁĄD: $e');}
-  } else {print("db istnieje");// resetDatabase();
+      // print('BŁĄD: $e');
+      }
+   } else { // print("db istnieje");// resetDatabase();
   }
 
   return openDatabase(path);

@@ -40,6 +40,7 @@ dependencies:
   cryptography:
   path:
   sqlite3:
+  tuple:
   shared_preferences:
 dev_dependencies:
   flutter_test:
