@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'login_screen.dart';
 import 'package:flutter/material.dart';
 import 'animations.dart';
+import '../database/register_logic.dart';
+import '../database/hashing_logic.dart';
+
 class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -236,9 +239,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         SizedBox(height: 80),
                         Center(
                           child: ElevatedButton(onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
-                              print('Formularz uzupełniony poprawnie\ email: '+emailController.text+'\ name: '+nameController.text+"\ password:"+passwordController.text+"\ confirmed: "+passwordConfirmController.text);
-                            }
+                            if (_formKey.currentState!.validate()){
+                              final result = await passwordHasher(passwordController.text);
+                              final hash = result['hash']!;
+                              final salt = result['salt']!;
+                              final success = await registerNewUser(nameController.text, emailController.text , hash, salt);
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text(success ? "User registered successfully!" : "User registration failed"),),);
+                              }
                             else {
                               print('Uzupełniono błędnie!');
                             }
