@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main_screens/home_screen.dart';
 import 'main_screens/profile_screen.dart';
+import 'main_screens/wiki_screen.dart';
 
 class navbarMainScreen extends StatefulWidget{
   @override
@@ -69,13 +70,6 @@ class AddScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(child: Text('Add Screen'));
-  }
-}
-
-class WikiScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Wiki Screen'));
   }
 }
 
