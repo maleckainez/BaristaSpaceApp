@@ -1,7 +1,7 @@
 import 'package:dzienniczek_baristy/screens/login_screen.dart';
 //import 'package:dzienniczek_baristy/screens/register_screen.dart';
 import 'package:flutter/material.dart';
-import 'database/register_logic.dart';
+import 'logics/register_logic.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp( MyApp());
