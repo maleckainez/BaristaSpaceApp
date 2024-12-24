@@ -1,4 +1,5 @@
 import 'package:dzienniczek_baristy/screens/login_screen.dart';
+import 'package:dzienniczek_baristy/screens/main_screens/sharedpreferences_logic.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -22,6 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Text("Profile Screen"),
                   ElevatedButton(
                     onPressed: () {
+                      loggedOutPreference();
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => LoginScreen()),
