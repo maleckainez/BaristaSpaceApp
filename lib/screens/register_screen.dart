@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'login_screen.dart';
 import 'package:flutter/material.dart';
 import 'animations.dart';
-import '../database/register_logic.dart';
-import '../database/hashing_logic.dart';
+import '../logics/register_logic.dart';
+import '../logics/hashing_logic.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
