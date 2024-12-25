@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'main_screens/add_screen.dart';
 import 'main_screens/home_screen.dart';
 import 'main_screens/profile_screen.dart';
 import 'main_screens/wiki_screen.dart';
@@ -65,11 +66,3 @@ class SearchScreen extends StatelessWidget {
     return Center(child: Text('Search Screen'));
   }
 }
-
-class AddScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Add Screen'));
-  }
-}
-
