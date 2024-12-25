@@ -39,6 +39,7 @@ dependencies:
   sqflite:
   cryptography:
   path:
+  intl:
   sqlite3:
   dropdown_button2:
   tuple:
