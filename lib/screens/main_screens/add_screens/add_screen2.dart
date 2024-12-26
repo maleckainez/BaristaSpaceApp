@@ -1,7 +1,13 @@
+import 'package:choice/choice.dart';
 import 'package:dzienniczek_baristy/screens/animations.dart';
 import 'package:dzienniczek_baristy/screens/main_screens/add_screens/add_screen2.dart';
+import 'package:dzienniczek_baristy/screens/main_screens/add_screens/brewingmethod.dart';
+import 'package:dzienniczek_baristy/screens/main_screens/add_screens/slideChart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinbox/cupertino.dart';
+import 'package:flutter_spinbox/flutter_spinbox.dart';
 import 'package:intl/intl.dart';
+import 'package:wheel_slider/wheel_slider.dart';
 
 class AddContent2 extends StatefulWidget{
   @override
@@ -10,12 +16,6 @@ class AddContent2 extends StatefulWidget{
   _AddContent2State createState() => _AddContent2State();
 }
 class _AddContent2State extends State<AddContent2>{
-  int selectedRating = 0; // Aktualnie wybrana liczba gwiazdek
-  int rating = 5; // Maksymalna liczba gwiazdek
-  final date = DateFormat('yyyy-MM-dd').format(
-    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
-  );
-
 
   @override
   Widget build(BuildContext context) {
@@ -39,91 +39,6 @@ class _AddContent2State extends State<AddContent2>{
             padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          border: Border.all(color: Colors.grey),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Import picture \nor take a photo",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: "RobotoSlab",
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children:[
-                          ConstrainedBox(constraints: BoxConstraints(maxWidth: 170), child: SizedBox(width: double.infinity, child:
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: List.generate(rating, (index) {
-                              return IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    selectedRating = index + 1;
-                                  });
-                                },
-                                padding: EdgeInsets.zero,
-                                constraints: const BoxConstraints(),
-                                style: const ButtonStyle(
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                ),
-                                icon: Icon(
-                                  Icons.star,
-                                  color: index < selectedRating ? Colors.amber : Colors.grey,
-                                ),
-                                iconSize: 32.0,
-                              );
-                            }),
-                          ),),),
-                          Text(
-                            "Overall Rating",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey,
-                              fontFamily: "RobotoSlab",
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(height: 15,),
-                          Container(
-                              height: 50,
-                              width: 180,
-                              child:
-                              Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    TextButton(onPressed: (){},
-                                        style: ButtonStyle(
-                                          padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
-                                          minimumSize: MaterialStateProperty.all<Size>(Size.zero),
-                                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                        ),
-                                        child: Text(date, style: TextStyle(
-                                            fontFamily: "RobotoSlab",
-                                            fontSize: 20, fontWeight: FontWeight.bold,
-                                            color: Colors.black),)),
-                                    Text("Brew date",
-                                      style: TextStyle(
-                                        fontFamily: "RobotoSlab",
-                                        color: Colors.grey,
-                                        fontSize: 12,
-                                      ),)
-                                  ]))
-                        ],)]
-                ),
                 SizedBox(height: 20,),
                 Divider(
                   color: Colors.grey.withOpacity(0.3),
@@ -132,13 +47,13 @@ class _AddContent2State extends State<AddContent2>{
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("1/3",style:
+                    Text("2/3",style:
                     TextStyle(
                       fontFamily: "RobotoSlab",
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
                     ),),
-                    Text("Origin Details",style:
+                    Text("Brew details",style:
                     TextStyle(
                       fontFamily: "RobotoSlab",
                       fontWeight: FontWeight.bold,
@@ -149,123 +64,28 @@ class _AddContent2State extends State<AddContent2>{
                   color: Colors.grey.withOpacity(0.3),
                   thickness: 1,
                   height: 1,),
-
                 SizedBox(height: 10,),
-                Row(
-                  //mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                      child:
-                      TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Country of origin",
-                            constraints: BoxConstraints(),
-                            isDense: false,
-                            hintStyle: TextStyle(
-                                fontFamily: "RobotoSlab",
-                                color: Colors.grey,
-                                fontSize: 12
-                            )
-                        ),
-                      ),),
-                    SizedBox(width: 30,),
-                    Flexible(
-                      child:
-                      TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Region/ Farm",
-                            constraints: BoxConstraints(),
-                            isDense: false,
-                            hintStyle: TextStyle(
-                                fontFamily: "RobotoSlab",
-                                color: Colors.grey,
-                                fontSize: 12
-                            )
-                        ),
-                      ),),],),
+                BrewingMethodChoice(),
+                Text("Used brew method", style: TextStyle(color: Colors.grey, fontSize: 12)),
                 SizedBox(height: 20,),
-                Row(
-                  //mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                      child:
-                      TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Processing method",
-                            constraints: BoxConstraints(),
-                            isDense: false,
-                            hintStyle: TextStyle(
-                                fontFamily: "RobotoSlab",
-                                color: Colors.grey,
-                                fontSize: 12
-                            )
-                        ),
-                      ),),
-                    SizedBox(width: 30,),
-                    Flexible(
-                      child:
-                      TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Botanical variety",
-                            constraints: BoxConstraints(),
-                            isDense: false,
-                            hintStyle: TextStyle(
-                                fontFamily: "RobotoSlab",
-                                color: Colors.grey,
-                                fontSize: 12
-                            )
-                        ),
-                      ),),],),
-                SizedBox(height: 20,),
-                Row(
-                  //mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                      child:
-                      TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Roastery",
-                            constraints: BoxConstraints(),
-                            isDense: false,
-                            hintStyle: TextStyle(
-                                fontFamily: "RobotoSlab",
-                                color: Colors.grey,
-                                fontSize: 12
-                            )
-                        ),
-                      ),),
-                    SizedBox(width: 30,),
-                    Flexible(
-                      child:
-                      TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "Roasting date",
-                            constraints: BoxConstraints(),
-                            isDense: false,
-                            hintStyle: TextStyle(
-                                fontFamily: "RobotoSlab",
-                                color: Colors.grey,
-                                fontSize: 12
-                            )
-                        ),
-                      ),),],),
+                SizedBox(
+                    width: 300,
+                    child: SpinBox(
+                  decoration: InputDecoration(hintText: "", suffix: Text("grams        "), border: InputBorder.none, contentPadding: EdgeInsets.zero),
+                  min: 1.0,
+                  decimals: 1,
+                  acceleration: 0.5,
+                  max: 50.0,
+                  value: 18.0,
+                  step: 0.1,
+                )),
+                SizedBox(height: 0,),
+                Text('Amount of used coffee beans', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
                 SizedBox(height: 30,),
-                TextFormField(
-                  maxLines: 2,
-                  minLines: 2,
-                  keyboardType: TextInputType.multiline,
-                  decoration: InputDecoration(
-                      hintText: "Personal notes",
-                      constraints: BoxConstraints(),
-                      isDense: false,
-                      hintStyle: TextStyle(
-                          fontFamily: "RobotoSlab",
-                          color: Colors.grey,
-                          fontSize: 12
-                      )
-                  ),
-                ),
-                SizedBox(height: 50,),
+                Container(width: 250,
+                    child: CustomScaleSlider(minValue: 0, maxValue: 50, initialValue: 25)),
+
+                SizedBox(height: 400,),
                 Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   ElevatedButton(
                     onPressed: () {

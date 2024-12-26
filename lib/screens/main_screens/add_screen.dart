@@ -16,6 +16,7 @@ final PageController _PageController = PageController(initialPage: 0);
   Widget build(BuildContext context) {
     return Theme(
         data: ThemeData(
+          fontFamily: "RobotoSlab",
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey,).copyWith(secondary: Colors.brown,)
         ),
     child: Scaffold(
