@@ -1,7 +1,4 @@
-import 'package:dzienniczek_baristy/screens/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
 import 'add_screens/add_screen1.dart';
 import 'add_screens/add_screen2.dart';
 
@@ -46,6 +43,7 @@ final PageController _PageController = PageController(initialPage: 0);
           children: [
             AddContent1(pageController: _PageController),
             AddContent2(pageController: _PageController,),
+            AddContent3(),
           ],
         )
       )

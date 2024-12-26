@@ -1,16 +1,7 @@
-import 'package:choice/choice.dart';
-import 'package:dzienniczek_baristy/screens/animations.dart';
-import 'package:dzienniczek_baristy/screens/main_screens/add_screens/add_screen2.dart';
-import 'package:dzienniczek_baristy/screens/main_screens/add_screens/brewingmethod.dart';
 import 'package:dzienniczek_baristy/screens/main_screens/add_screens/slideChart.dart';
 import 'package:dzienniczek_baristy/screens/main_screens/add_screens/time_spin_box.dart';
 import 'package:dzienniczek_baristy/screens/main_screens/add_screens/value_input_widget.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinbox/cupertino.dart';
-import 'package:flutter_spinbox/flutter_spinbox.dart';
-import 'package:intl/intl.dart';
-import 'package:wheel_slider/wheel_slider.dart';
 
 class AddContent2 extends StatefulWidget{
   @override
@@ -22,7 +13,8 @@ class _AddContent2State extends State<AddContent2>{
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SingleChildScrollView(
+    child:  Center(
         child:Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(40),
@@ -217,7 +209,7 @@ class _AddContent2State extends State<AddContent2>{
                   )])],
             ),
           ),
-        ));
+        )));
 
   }
 }
