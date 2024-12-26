@@ -3,6 +3,8 @@ import 'package:dzienniczek_baristy/screens/main_screens/add_screens/add_screen2
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'brewingmethod.dart';
+
 class AddContent1 extends StatefulWidget{
   @override
   final PageController pageController;
@@ -34,7 +36,7 @@ class _AddContent1State extends State<AddContent1>{
           color: Colors.white,
         ),
         width: 350,
-        height: 600,
+        height: 650,
         child: Padding(
           padding: EdgeInsets.all(20.0),
           child: Column(
@@ -124,6 +126,9 @@ class _AddContent1State extends State<AddContent1>{
                                 ]))
                       ],)]
               ),
+              SizedBox(height: 10,),
+              BrewingMethodChoice(),
+              //Text("Used brew method", style: TextStyle(color: Colors.grey, fontSize: 12)),
               SizedBox(height: 20,),
               Divider(
                 color: Colors.grey.withOpacity(0.3),

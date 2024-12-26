@@ -3,6 +3,9 @@ import 'package:dzienniczek_baristy/screens/animations.dart';
 import 'package:dzienniczek_baristy/screens/main_screens/add_screens/add_screen2.dart';
 import 'package:dzienniczek_baristy/screens/main_screens/add_screens/brewingmethod.dart';
 import 'package:dzienniczek_baristy/screens/main_screens/add_screens/slideChart.dart';
+import 'package:dzienniczek_baristy/screens/main_screens/add_screens/time_spin_box.dart';
+import 'package:dzienniczek_baristy/screens/main_screens/add_screens/value_input_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinbox/cupertino.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
@@ -34,12 +37,12 @@ class _AddContent2State extends State<AddContent2>{
             color: Colors.white,
           ),
           width: 350,
-          height: 600,
+          height: 650,
           child: Padding(
             padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
-                SizedBox(height: 20,),
+
                 Divider(
                   color: Colors.grey.withOpacity(0.3),
                   thickness: 1,
@@ -64,29 +67,123 @@ class _AddContent2State extends State<AddContent2>{
                   color: Colors.grey.withOpacity(0.3),
                   thickness: 1,
                   height: 1,),
-                SizedBox(height: 10,),
-                BrewingMethodChoice(),
-                Text("Used brew method", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                //SizedBox(height: 10,),
+                //BrewingMethodChoice(),
+                //Text("Used brew method", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                //SizedBox(height: 5,),
+                Divider(
+                  color: Colors.grey.withOpacity(0.15),
+                  thickness: 1,
+                  height: 1,),
                 SizedBox(height: 20,),
-                SizedBox(
-                    width: 300,
-                    child: SpinBox(
-                  decoration: InputDecoration(hintText: "", suffix: Text("grams        "), border: InputBorder.none, contentPadding: EdgeInsets.zero),
-                  min: 1.0,
-                  decimals: 1,
-                  acceleration: 0.5,
-                  max: 50.0,
-                  value: 18.0,
-                  step: 0.1,
-                )),
-                SizedBox(height: 0,),
-                Text('Amount of used coffee beans', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
-                SizedBox(height: 30,),
-                Container(width: 250,
+                Container(
                     child: CustomScaleSlider(minValue: 0, maxValue: 50, initialValue: 25)),
+                SizedBox(height: 5,),
+                Divider(
+                  color: Colors.grey.withOpacity(0.15),
+                  thickness: 1,
+                  height: 1,),
+                AdvancedSpinBox(
+                  initialValue: 10,
+                  min: 0,
+                  max: 200,
+                  step: 1,
+                  acceleration: 5,
+                  unit: 'g',
+                  onChanged: (value) {},
+                ),
+                Text('Gramature of coffee used', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
+                SizedBox(height: 5,),
+                Divider(
+                  color: Colors.grey.withOpacity(0.15),
+                  thickness: 1,
+                  height: 1,),
+                AdvancedSpinBox(
+                  initialValue: 10,
+                  min: 0,
+                  max: 200,
+                  step: 1,
+                  acceleration: 5,
+                  unit: 'g',
+                  onChanged: (value) {},
+                ),
+                Text('Grammature of water used', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
+                SizedBox(height: 5,),
+                Divider(
+                  color: Colors.grey.withOpacity(0.15),
+                  thickness: 1,
+                  height: 1,),
+                AdvancedSpinBox(
+                  initialValue: 10,
+                  min: 0,
+                  max: 200,
+                  step: 1,
+                  acceleration: 5,
+                  unit: '°C',
+                  onChanged: (value) {},
+                ),
+                Text('Temperature of the water', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
+                SizedBox(height: 5,),
+                Divider(
+                  color: Colors.grey.withOpacity(0.15),
+                  thickness: 1,
+                  height: 1,),
+                TimeSpinBox( initialMinutes: 0, initialSeconds: 0),
 
-                SizedBox(height: 400,),
-                Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                Text('Total time of brew', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
+                SizedBox(height: 5,),
+                Divider(
+                  color: Colors.grey.withOpacity(0.15),
+                  thickness: 1,
+                  height: 1,),
+                SizedBox(height: 10,),
+                SizedBox(
+                  width: 270,
+                child: TextFormField(
+                  minLines: 3,
+                  maxLines: 3,
+                  decoration: InputDecoration(
+                    hintText: "Personal notes\nf.ex. preinfusion",
+                    constraints: BoxConstraints(),
+                    hintStyle: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                  ),
+                )),
+                SizedBox(height: 70,),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      widget.pageController.previousPage(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.white),
+                      shadowColor: MaterialStateProperty.all(Colors.grey.withOpacity(0.3)),
+                      elevation: MaterialStateProperty.all(5),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.navigate_before, color: Colors.grey),
+                        Text(
+                          "Back",
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       widget.pageController.nextPage(

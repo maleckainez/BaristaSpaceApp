@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // For haptic feedback
+import 'dart:math'; // For math functions like cos and sin
 
 class CustomScaleSlider extends StatefulWidget {
   final double minValue;
@@ -57,7 +58,8 @@ class _CustomScaleSliderState extends State<CustomScaleSlider> {
         return Column(
           children: [
             SizedBox(
-              height: 25,
+              width: 250,
+              height: 40,
               child: GestureDetector(
                 onHorizontalDragStart: _onDragStart,
                 onHorizontalDragUpdate: _onDragUpdate,
@@ -71,19 +73,15 @@ class _CustomScaleSliderState extends State<CustomScaleSlider> {
                 ),
               ),
             ),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    "Fine",
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                  Text(
-                    "Coarse",
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                ],
+            Center(
+              child: Text(
+                "Grind Coarseness",
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                ),
               ),
+            )
           ],
         );
       },
@@ -105,6 +103,7 @@ class ScalePainter extends CustomPainter {
   final blackPaint = Paint()
     ..color = Colors.black
     ..strokeWidth = 2;
+
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
@@ -125,7 +124,6 @@ class ScalePainter extends CustomPainter {
       );
     }
 
-
     // Drawing the red line
     final redLineX = ((currentValue - minValue) / (maxValue - minValue)) *
         size.width; // Red line position
@@ -137,6 +135,63 @@ class ScalePainter extends CustomPainter {
       Offset(redLineX, 30),
       redPaint,
     );
+
+    // Drawing circles for Fine and Coarse
+    final circleRadius = 10.0;
+    final fineCirclePaint = Paint()..color = Colors.black;
+    final coarseCirclePaint = Paint()..color = Colors.black;
+
+    // Fine grind circle (left side) with small dots
+    canvas.drawCircle(
+      Offset(-25, 10),
+      circleRadius,
+      fineCirclePaint,
+    );
+    // Coarse grind circle (right side) with bigger circles
+    canvas.drawCircle(
+      Offset(size.width + 25, 10),
+      circleRadius,
+      coarseCirclePaint,
+    );
+    final bigCirclePaint = Paint()..color = Colors.white;
+    canvas.drawCircle(
+      Offset(-25, 10),
+      9.0,
+      bigCirclePaint,
+    );
+    canvas.drawCircle(
+        Offset(size.width + 25, 10),
+        9.0,
+        bigCirclePaint,
+    );
+    for (int i = -31; i <= -19; i += 4) {
+      canvas.drawCircle(Offset(i.toDouble(), 10), 1, fineCirclePaint);
+    }
+    for (int i = -29; i <= -21; i += 4) {
+      canvas.drawCircle(Offset(i.toDouble(), 13), 1, fineCirclePaint);
+    }
+    for (int i = -27; i <= -23; i += 4) {
+      canvas.drawCircle(Offset(i.toDouble(), 16), 1, fineCirclePaint);
+    }
+    for (int i = -27; i <= -23; i += 4) {
+      canvas.drawCircle(Offset(i.toDouble(), 4), 1, fineCirclePaint);
+    }
+    for (int i = -29; i <= -21; i += 4) {
+      canvas.drawCircle(Offset(i.toDouble(), 7), 1, fineCirclePaint);
+    }
+    for (int i = 19; i <= 31; i += 6) {
+      canvas.drawCircle(Offset(size.width + i.toDouble(), 10), 2, fineCirclePaint);
+    }
+    for (int i = 22; i <= 28; i += 6) {
+      canvas.drawCircle(Offset(size.width + i.toDouble(), 15), 2, fineCirclePaint);
+    }
+    for (int i = 22; i <= 28; i += 6) {
+      canvas.drawCircle(Offset(size.width + i.toDouble(), 5), 2, fineCirclePaint);
+    }
+
+
+
+
   }
 
   @override
