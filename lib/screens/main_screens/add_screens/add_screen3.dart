@@ -4,18 +4,18 @@ import 'package:dzienniczek_baristy/screens/main_screens/add_screens/value_input
 import 'package:flutter/material.dart';
 
 
-class AddContent2 extends StatefulWidget{
+class AddContent3 extends StatefulWidget{
   @override
   final PageController pageController;
-  AddContent2({required this.pageController});
-  _AddContent2State createState() => _AddContent2State();
+  AddContent3({required this.pageController});
+  _AddContent3State createState() => _AddContent3State();
 }
-class _AddContent2State extends State<AddContent2>{
+class _AddContent3State extends State<AddContent3>{
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child:  Center(
+    return Center(
+        child:  SingleChildScrollView(
             child:Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
@@ -43,13 +43,13 @@ class _AddContent2State extends State<AddContent2>{
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("2/3",style:
+                        Text("3/3",style:
                         TextStyle(
                           fontFamily: "RobotoSlab",
                           fontWeight: FontWeight.bold,
                           color: Colors.grey,
                         ),),
-                        Text("Brew details",style:
+                        Text("Sensory details",style:
                         TextStyle(
                           fontFamily: "RobotoSlab",
                           fontWeight: FontWeight.bold,
@@ -60,90 +60,8 @@ class _AddContent2State extends State<AddContent2>{
                       color: Colors.grey.withOpacity(0.3),
                       thickness: 1,
                       height: 1,),
-                    //SizedBox(height: 10,),
-                    //BrewingMethodChoice(),
-                    //Text("Used brew method", style: TextStyle(color: Colors.grey, fontSize: 12)),
-                    //SizedBox(height: 5,),
-                    Divider(
-                      color: Colors.grey.withOpacity(0.15),
-                      thickness: 1,
-                      height: 1,),
                     SizedBox(height: 20,),
-                    Container(
-                        child: CustomScaleSlider(minValue: 0, maxValue: 50, initialValue: 25)),
-                    SizedBox(height: 5,),
-                    Divider(
-                      color: Colors.grey.withOpacity(0.15),
-                      thickness: 1,
-                      height: 1,),
-                    AdvancedSpinBox(
-                      initialValue: 10,
-                      min: 0,
-                      max: 200,
-                      step: 1,
-                      acceleration: 5,
-                      unit: 'g',
-                      onChanged: (value) {},
-                    ),
-                    Text('Gramature of coffee used', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
-                    SizedBox(height: 5,),
-                    Divider(
-                      color: Colors.grey.withOpacity(0.15),
-                      thickness: 1,
-                      height: 1,),
-                    AdvancedSpinBox(
-                      initialValue: 10,
-                      min: 0,
-                      max: 200,
-                      step: 1,
-                      acceleration: 5,
-                      unit: 'g',
-                      onChanged: (value) {},
-                    ),
-                    Text('Grammature of water used', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
-                    SizedBox(height: 5,),
-                    Divider(
-                      color: Colors.grey.withOpacity(0.15),
-                      thickness: 1,
-                      height: 1,),
-                    AdvancedSpinBox(
-                      initialValue: 10,
-                      min: 0,
-                      max: 200,
-                      step: 1,
-                      acceleration: 5,
-                      unit: '°C',
-                      onChanged: (value) {},
-                    ),
-                    Text('Temperature of the water', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
-                    SizedBox(height: 5,),
-                    Divider(
-                      color: Colors.grey.withOpacity(0.15),
-                      thickness: 1,
-                      height: 1,),
-                    TimeSpinBox( initialMinutes: 0, initialSeconds: 0),
 
-                    Text('Total time of brew', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
-                    SizedBox(height: 5,),
-                    Divider(
-                      color: Colors.grey.withOpacity(0.15),
-                      thickness: 1,
-                      height: 1,),
-                    SizedBox(height: 10,),
-                    SizedBox(
-                        width: 270,
-                        child: TextFormField(
-                          minLines: 3,
-                          maxLines: 3,
-                          decoration: InputDecoration(
-                            hintText: "Personal notes\nf.ex. preinfusion",
-                            constraints: BoxConstraints(),
-                            hintStyle: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        )),
                     SizedBox(height: 70,),
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                       ElevatedButton(

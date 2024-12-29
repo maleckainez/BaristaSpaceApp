@@ -13,8 +13,8 @@ class _AddContent2State extends State<AddContent2>{
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-    child:  Center(
+    return Center(
+    child:  SingleChildScrollView(
         child:Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(40),
@@ -63,10 +63,6 @@ class _AddContent2State extends State<AddContent2>{
                 //BrewingMethodChoice(),
                 //Text("Used brew method", style: TextStyle(color: Colors.grey, fontSize: 12)),
                 //SizedBox(height: 5,),
-                Divider(
-                  color: Colors.grey.withOpacity(0.15),
-                  thickness: 1,
-                  height: 1,),
                 SizedBox(height: 20,),
                 Container(
                     child: CustomScaleSlider(minValue: 0, maxValue: 50, initialValue: 25)),

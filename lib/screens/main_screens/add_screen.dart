@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'add_screens/add_screen1.dart';
 import 'add_screens/add_screen2.dart';
+import 'add_screens/add_screen3.dart';
 
 class AddScreen extends StatefulWidget {
   @override
@@ -43,7 +44,7 @@ final PageController _PageController = PageController(initialPage: 0);
           children: [
             AddContent1(pageController: _PageController),
             AddContent2(pageController: _PageController,),
-            AddContent3(),
+            AddContent3(pageController: _PageController),
           ],
         )
       )
