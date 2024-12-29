@@ -41,9 +41,12 @@ dependencies:
   path:
   intl:
   sqlite3:
+  choice:
+  wheel_slider:
   dropdown_button2:
   tuple:
   shared_preferences:
+  flutter_spinbox:
 dev_dependencies:
   flutter_test:
     sdk: flutter

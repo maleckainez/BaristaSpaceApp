@@ -3,7 +3,7 @@ import 'package:dzienniczek_baristy/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../bottom_navbar.dart';
+import '../screens/bottom_navbar.dart';
 
 Future<void> loggedInPreference(email, password) async {
   final prefence = await SharedPreferences.getInstance();

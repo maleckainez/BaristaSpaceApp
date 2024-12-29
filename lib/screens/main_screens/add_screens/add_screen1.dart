@@ -1,7 +1,7 @@
-import 'package:dzienniczek_baristy/screens/animations.dart';
-import 'package:dzienniczek_baristy/screens/main_screens/add_screens/add_screen2.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'brewingmethod.dart';
 
 class AddContent1 extends StatefulWidget{
   @override
@@ -20,7 +20,8 @@ class _AddContent1State extends State<AddContent1>{
   @override
   Widget build(BuildContext context) {
     return Center(
-    child:Container(
+    child: SingleChildScrollView(
+    child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
           boxShadow: [
@@ -34,7 +35,7 @@ class _AddContent1State extends State<AddContent1>{
           color: Colors.white,
         ),
         width: 350,
-        height: 600,
+        height: 650,
         child: Padding(
           padding: EdgeInsets.all(20.0),
           child: Column(
@@ -124,6 +125,9 @@ class _AddContent1State extends State<AddContent1>{
                                 ]))
                       ],)]
               ),
+              SizedBox(height: 10,),
+              BrewingMethodChoice(),
+              //Text("Used brew method", style: TextStyle(color: Colors.grey, fontSize: 12)),
               SizedBox(height: 20,),
               Divider(
                 color: Colors.grey.withOpacity(0.3),
@@ -150,7 +154,7 @@ class _AddContent1State extends State<AddContent1>{
                 thickness: 1,
                 height: 1,),
 
-              SizedBox(height: 10,),
+              SizedBox(height: 5,),
               Row(
                 //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -183,7 +187,7 @@ class _AddContent1State extends State<AddContent1>{
                           )
                       ),
                     ),),],),
-              SizedBox(height: 20,),
+              SizedBox(height: 5,),
               Row(
                 //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -216,7 +220,7 @@ class _AddContent1State extends State<AddContent1>{
                           )
                       ),
                     ),),],),
-              SizedBox(height: 20,),
+              SizedBox(height: 5,),
               Row(
                 //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -249,13 +253,46 @@ class _AddContent1State extends State<AddContent1>{
                           )
                       ),
                     ),),],),
-              SizedBox(height: 30,),
+              SizedBox(height: 5,),
+              Row(
+                //mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child:
+                    TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "Roast type",
+                          constraints: BoxConstraints(),
+                          isDense: false,
+                          hintStyle: TextStyle(
+                              fontFamily: "RobotoSlab",
+                              color: Colors.grey,
+                              fontSize: 12
+                          )
+                      ),
+                    ),),
+                  SizedBox(width: 30,),
+                  Flexible(
+                    child:
+                    TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "Farm altitude",
+                          constraints: BoxConstraints(),
+                          isDense: false,
+                          hintStyle: TextStyle(
+                              fontFamily: "RobotoSlab",
+                              color: Colors.grey,
+                              fontSize: 12
+                          )
+                      ),
+                    ),),],),
+              SizedBox(height: 5,),
               TextFormField(
                 maxLines: 2,
                 minLines: 2,
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
-                    hintText: "Personal notes",
+                    hintText: "Personal \nnotes",
                     constraints: BoxConstraints(),
                     isDense: false,
                     hintStyle: TextStyle(
@@ -265,7 +302,7 @@ class _AddContent1State extends State<AddContent1>{
                     )
                 ),
               ),
-              SizedBox(height: 50,),
+              SizedBox(height: 55,),
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 ElevatedButton(
                   onPressed: () {
@@ -300,7 +337,7 @@ class _AddContent1State extends State<AddContent1>{
                 )])],
           ),
         ),
-      ));
+      )));
 
   }
 }
