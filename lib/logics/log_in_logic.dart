@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cryptography/cryptography.dart';
 import 'dart:convert';
 import 'package:sqflite/sqflite.dart';
@@ -28,7 +30,23 @@ Future<bool> passwordValidator(String password, String email) async {
   final hashed = await algorithm.hash(utf8.encode(salted));
   final hashedPassword = await hashed.bytes
         .map((byte) => byte.toRadixString(16).padLeft(2, '0')).join();
-  print("Database password: $dbpassword, Salt: $dbsalt, Hashed Input: $hashedPassword");
+  //print("Database password: $dbpassword, Salt: $dbsalt, Hashed Input: $hashedPassword");
   return hashedPassword == dbpassword;
+}
+Future<int?> getUserId(String email) async {
+  final db = await loadDatabase();
 
+  try {
+    final result = await db.rawQuery(
+        'SELECT user_id FROM users WHERE email = ?', [email]
+    );
+
+    if (result.isNotEmpty) {
+      return result.first['user_id'] as int;
+    } else {
+      return null;
+    }
+  } finally {
+    await db.close();
+  }
 }

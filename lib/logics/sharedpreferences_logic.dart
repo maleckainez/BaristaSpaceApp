@@ -5,11 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../screens/bottom_navbar.dart';
 
-Future<void> loggedInPreference(email, password) async {
+Future<void> loggedInPreference(email, password, user_id) async {
   final prefence = await SharedPreferences.getInstance();
   await prefence.setBool("logged_in", true);
   await prefence.setString('email', email);
   await prefence.setString('password', password);
+  await prefence.setString('user_id', user_id);
 }
 
 Future<void> loggedOutPreference() async {
