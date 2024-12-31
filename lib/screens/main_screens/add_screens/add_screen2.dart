@@ -3,10 +3,13 @@ import 'package:dzienniczek_baristy/screens/main_screens/add_screens/time_spin_b
 import 'package:dzienniczek_baristy/screens/main_screens/add_screens/value_input_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../../logics/brew_data_logic.dart';
+
 class AddContent2 extends StatefulWidget{
   @override
   final PageController pageController;
-  AddContent2({required this.pageController});
+  final BrewData brewData;
+  AddContent2({required this.pageController,required this.brewData});
   _AddContent2State createState() => _AddContent2State();
 }
 class _AddContent2State extends State<AddContent2>{

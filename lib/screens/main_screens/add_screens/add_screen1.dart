@@ -1,23 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'package:dzienniczek_baristy/logics/brew_data_logic.dart';
 import 'brewingmethod.dart';
 
 class AddContent1 extends StatefulWidget{
   @override
   final PageController pageController;
-  AddContent1({required this.pageController});
+  final BrewData brewData;
+  AddContent1({required this.pageController, required this.brewData});
   _AddContent1State createState() => _AddContent1State();
 }
 class _AddContent1State extends State<AddContent1>{
-  int selectedRating = 0; // Aktualnie wybrana liczba gwiazdek
-  int rating = 5; // Maksymalna liczba gwiazdek
+  int selectedRating = 0;
+  int rating = 5;
   final date = DateFormat('yyyy-MM-dd').format(
     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
   );
 
 
   @override
+  String? BrewMethod = '';
+  String? OriginCountry = '';
+  String? OriginFarm = '';
+  String? OriginProcessing = '';
+  String? OriginVariety = '';
+  String? OriginRoastery = '';
+  String? OriginRoastDate = '';
+  String? OriginRoastType = '';
+  String? OriginFarmAlt = '';
+  String? OriginNotes = '';
   Widget build(BuildContext context) {
     return Center(
     child: SingleChildScrollView(
@@ -73,6 +84,7 @@ class _AddContent1State extends State<AddContent1>{
                               onPressed: () {
                                 setState(() {
                                   selectedRating = index + 1;
+                                  print("Wybrana ocena kawy: $selectedRating");
                                 });
                               },
                               padding: EdgeInsets.zero,
@@ -126,7 +138,11 @@ class _AddContent1State extends State<AddContent1>{
                       ],)]
               ),
               SizedBox(height: 10,),
-              BrewingMethodChoice(),
+              BrewingMethodChoice(
+                onChanged: (value){
+                  BrewMethod = value;
+                },
+              ),
               //Text("Used brew method", style: TextStyle(color: Colors.grey, fontSize: 12)),
               SizedBox(height: 20,),
               Divider(
@@ -161,6 +177,11 @@ class _AddContent1State extends State<AddContent1>{
                   Flexible(
                     child:
                     TextFormField(
+                      onChanged: (value) {
+                        setState(() {
+                          OriginCountry = value;
+                          //print(OriginCountry);
+                        });},
                       decoration: InputDecoration(
                           hintText: "Country of origin",
                           constraints: BoxConstraints(),
@@ -176,6 +197,7 @@ class _AddContent1State extends State<AddContent1>{
                   Flexible(
                     child:
                     TextFormField(
+                      onChanged: (value) {setState(() {OriginFarm = value;});},
                       decoration: InputDecoration(
                           hintText: "Region/ Farm",
                           constraints: BoxConstraints(),
@@ -194,6 +216,7 @@ class _AddContent1State extends State<AddContent1>{
                   Flexible(
                     child:
                     TextFormField(
+                      onChanged: (value) {setState(() {OriginProcessing = value;});},
                       decoration: InputDecoration(
                           hintText: "Processing method",
                           constraints: BoxConstraints(),
@@ -209,6 +232,7 @@ class _AddContent1State extends State<AddContent1>{
                   Flexible(
                     child:
                     TextFormField(
+                      onChanged: (value) {setState(() {OriginVariety = value;});},
                       decoration: InputDecoration(
                           hintText: "Botanical variety",
                           constraints: BoxConstraints(),
@@ -227,6 +251,7 @@ class _AddContent1State extends State<AddContent1>{
                   Flexible(
                     child:
                     TextFormField(
+                      onChanged: (value) {setState(() {OriginRoastery = value;});},
                       decoration: InputDecoration(
                           hintText: "Roastery",
                           constraints: BoxConstraints(),
@@ -242,6 +267,7 @@ class _AddContent1State extends State<AddContent1>{
                   Flexible(
                     child:
                     TextFormField(
+                      onChanged: (value) {setState(() {OriginRoastDate = value;});},
                       decoration: InputDecoration(
                           hintText: "Roasting date",
                           constraints: BoxConstraints(),
@@ -260,6 +286,7 @@ class _AddContent1State extends State<AddContent1>{
                   Flexible(
                     child:
                     TextFormField(
+                      onChanged: (value) {setState(() {OriginRoastType = value;});},
                       decoration: InputDecoration(
                           hintText: "Roast type",
                           constraints: BoxConstraints(),
@@ -275,6 +302,7 @@ class _AddContent1State extends State<AddContent1>{
                   Flexible(
                     child:
                     TextFormField(
+                      onChanged: (value) {setState(() {OriginFarmAlt = value;});},
                       decoration: InputDecoration(
                           hintText: "Farm altitude",
                           constraints: BoxConstraints(),
@@ -288,6 +316,7 @@ class _AddContent1State extends State<AddContent1>{
                     ),),],),
               SizedBox(height: 5,),
               TextFormField(
+                onChanged: (value) {setState(() {OriginNotes = value;});},
                 maxLines: 2,
                 minLines: 2,
                 keyboardType: TextInputType.multiline,
@@ -306,6 +335,19 @@ class _AddContent1State extends State<AddContent1>{
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 ElevatedButton(
                   onPressed: () {
+                    widget.brewData.selectedRating = selectedRating;
+                    widget.brewData.brewMethod = BrewMethod;
+                    widget.brewData.originCountry = OriginCountry;
+                    widget.brewData.originFarm = OriginFarm;
+                    widget.brewData.originProcessing = OriginProcessing;
+                    widget.brewData.originVariety = OriginVariety;
+                    widget.brewData.originRoastery = OriginRoastery;
+                    widget.brewData.originRoastDate = OriginRoastDate;
+                    widget.brewData.originRoastType = OriginRoastType;
+                    widget.brewData.originFarmAlt = OriginFarmAlt;
+                    widget.brewData.originNotes = OriginNotes;
+
+                    print(widget.brewData);
                     widget.pageController.nextPage(
                       duration: Duration(milliseconds: 300),
                       curve: Curves.easeInOut,

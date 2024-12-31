@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:choice/choice.dart';
 
 class BrewingMethodChoice extends StatefulWidget {
-  const BrewingMethodChoice({super.key});
+  final ValueChanged<String?>? onChanged;
+  const BrewingMethodChoice({super.key, this.onChanged});
 
   @override
   State<BrewingMethodChoice> createState() => _BrewingMethodChoice();
@@ -24,6 +25,8 @@ class _BrewingMethodChoice extends State<BrewingMethodChoice> {
 
   void setSelectedBrewingMethod(String? method) {
     setState(() => selectedBrewingMethod = method);
+    print("Wybrana metoda parzenia: $selectedBrewingMethod");
+    widget.onChanged?.call(method ?? '');
   }
 
   @override

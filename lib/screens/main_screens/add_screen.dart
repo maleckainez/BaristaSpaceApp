@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../logics/brew_data_logic.dart';
 import 'add_screens/add_screen1.dart';
 import 'add_screens/add_screen2.dart';
 import 'add_screens/add_screen3.dart';
@@ -10,6 +11,7 @@ class AddScreen extends StatefulWidget {
 
 class _AddScreenState extends State<AddScreen> {
 final PageController _PageController = PageController(initialPage: 0);
+final BrewData brewData = BrewData();
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -42,9 +44,9 @@ final PageController _PageController = PageController(initialPage: 0);
           controller: _PageController,
           physics: NeverScrollableScrollPhysics(),
           children: [
-            AddContent1(pageController: _PageController),
-            AddContent2(pageController: _PageController,),
-            AddContent3(pageController: _PageController),
+            AddContent1(pageController: _PageController, brewData: brewData,),
+            AddContent2(pageController: _PageController, brewData: brewData,),
+            AddContent3(pageController: _PageController, brewData: brewData,),
           ],
         )
       )
