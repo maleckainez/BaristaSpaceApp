@@ -1,5 +1,6 @@
 class BrewData {
   int selectedRating;
+  String? brewDate;
   String? brewMethod;
   String? originCountry;
   String? originFarm;
@@ -19,6 +20,7 @@ class BrewData {
 
   BrewData({
     this.selectedRating = 0,
+    this.brewDate,
     this.brewMethod,
     this.originCountry,
     this.originFarm,

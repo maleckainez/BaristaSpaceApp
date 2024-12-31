@@ -20,6 +20,7 @@ class _AddContent1State extends State<AddContent1>{
 
   @override
   String? BrewMethod = '';
+  String? BrewDate = '';
   String? OriginCountry = '';
   String? OriginFarm = '';
   String? OriginProcessing = '';
@@ -30,6 +31,7 @@ class _AddContent1State extends State<AddContent1>{
   String? OriginFarmAlt = '';
   String? OriginNotes = '';
   Widget build(BuildContext context) {
+    BrewDate = date.toString();
     return Center(
     child: SingleChildScrollView(
     child: Container(
@@ -118,7 +120,11 @@ class _AddContent1State extends State<AddContent1>{
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  TextButton(onPressed: (){},
+                                  TextButton(onPressed: (){
+                                    setState(() {
+                                      BrewDate = date.toString();
+                                    });
+                                  },
                                       style: ButtonStyle(
                                         padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
                                         minimumSize: MaterialStateProperty.all<Size>(Size.zero),
@@ -336,6 +342,7 @@ class _AddContent1State extends State<AddContent1>{
                 ElevatedButton(
                   onPressed: () {
                     widget.brewData.selectedRating = selectedRating;
+                    widget.brewData.brewDate = BrewDate;
                     widget.brewData.brewMethod = BrewMethod;
                     widget.brewData.originCountry = OriginCountry;
                     widget.brewData.originFarm = OriginFarm;

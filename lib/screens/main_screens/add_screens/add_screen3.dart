@@ -1,3 +1,4 @@
+import 'package:dzienniczek_baristy/logics/new_post_logic.dart';
 import 'package:dzienniczek_baristy/screens/main_screens/add_screens/slideChart.dart';
 import 'package:dzienniczek_baristy/screens/main_screens/add_screens/time_spin_box.dart';
 import 'package:dzienniczek_baristy/screens/main_screens/add_screens/value_input_widget.dart';
@@ -101,6 +102,7 @@ class _AddContent3State extends State<AddContent3>{
                       ),
                       ElevatedButton(
                         onPressed: () {
+                          AddNewPost(widget.brewData);
                           print(widget.brewData.toString());
                           widget.pageController.nextPage(
                             duration: Duration(milliseconds: 300),
