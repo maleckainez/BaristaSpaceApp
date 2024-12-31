@@ -84,7 +84,7 @@ class _AddContent1State extends State<AddContent1>{
                               onPressed: () {
                                 setState(() {
                                   selectedRating = index + 1;
-                                  print("Wybrana ocena kawy: $selectedRating");
+                                  //print("Wybrana ocena kawy: $selectedRating");
                                 });
                               },
                               padding: EdgeInsets.zero,
@@ -347,7 +347,7 @@ class _AddContent1State extends State<AddContent1>{
                     widget.brewData.originFarmAlt = OriginFarmAlt;
                     widget.brewData.originNotes = OriginNotes;
 
-                    print(widget.brewData);
+                    //print(widget.brewData);
                     widget.pageController.nextPage(
                       duration: Duration(milliseconds: 300),
                       curve: Curves.easeInOut,

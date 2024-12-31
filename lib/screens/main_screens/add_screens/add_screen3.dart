@@ -69,6 +69,7 @@ class _AddContent3State extends State<AddContent3>{
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                       ElevatedButton(
                         onPressed: () {
+
                           widget.pageController.previousPage(
                             duration: Duration(milliseconds: 300),
                             curve: Curves.easeInOut,
@@ -100,6 +101,7 @@ class _AddContent3State extends State<AddContent3>{
                       ),
                       ElevatedButton(
                         onPressed: () {
+                          print(widget.brewData.toString());
                           widget.pageController.nextPage(
                             duration: Duration(milliseconds: 300),
                             curve: Curves.easeInOut,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class TimeSpinBox extends StatefulWidget {
   final int initialMinutes;
   final int initialSeconds;
-  final ValueChanged<String>? onChanged;
+  final ValueChanged<double>? onChanged;
 
   const TimeSpinBox({
     Key? key,
@@ -41,7 +41,8 @@ class _TimeSpinBoxState extends State<TimeSpinBox> {
         _currentMinutes = newMinutes;
         _currentSeconds = newSeconds;
         _controller.text = _formatTime(_currentMinutes, _currentSeconds);
-        widget.onChanged?.call(_controller.text);
+        double timeInMinutes = _currentMinutes + (_currentSeconds / 60.0);
+        widget.onChanged?.call(timeInMinutes);
       });
     }
   }
@@ -63,7 +64,7 @@ class _TimeSpinBoxState extends State<TimeSpinBox> {
   }
 
   void _startLongPress(bool increment, bool isMinutes) {
-    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       if (increment) {
         isMinutes ? _incrementMinutes() : _incrementSeconds();
       } else {

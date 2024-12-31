@@ -15,6 +15,12 @@ class AddContent2 extends StatefulWidget{
 class _AddContent2State extends State<AddContent2>{
 
   @override
+  double BrewCoarsness = 0.0;
+  double BrewCoffeeGrams = 0.0;
+  double BrewWaterGrams = 0.0;
+  double BrewWaterTemp = 0.0;
+  double BrewTotalTime = 0.00;
+  String? BrewNotes = '';
   Widget build(BuildContext context) {
     return Center(
     child:  SingleChildScrollView(
@@ -68,7 +74,11 @@ class _AddContent2State extends State<AddContent2>{
                 //SizedBox(height: 5,),
                 SizedBox(height: 20,),
                 Container(
-                    child: CustomScaleSlider(minValue: 0, maxValue: 50, initialValue: 25)),
+                    child: CustomScaleSlider(minValue: 0, maxValue: 50, initialValue: 25,
+                    onValueChanged: (value){
+                      BrewCoarsness = value;
+                      //print(BrewCoarsness);
+                    },)),
                 SizedBox(height: 5,),
                 Divider(
                   color: Colors.grey.withOpacity(0.15),
@@ -81,7 +91,9 @@ class _AddContent2State extends State<AddContent2>{
                   step: 1,
                   acceleration: 5,
                   unit: 'g',
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    BrewCoffeeGrams = value;
+                  },
                 ),
                 Text('Gramature of coffee used', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
                 SizedBox(height: 5,),
@@ -96,7 +108,9 @@ class _AddContent2State extends State<AddContent2>{
                   step: 1,
                   acceleration: 5,
                   unit: 'g',
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    BrewWaterGrams = value;
+                  },
                 ),
                 Text('Grammature of water used', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
                 SizedBox(height: 5,),
@@ -111,7 +125,9 @@ class _AddContent2State extends State<AddContent2>{
                   step: 1,
                   acceleration: 5,
                   unit: '°C',
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    BrewWaterTemp = value;
+                  },
                 ),
                 Text('Temperature of the water', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
                 SizedBox(height: 5,),
@@ -119,7 +135,11 @@ class _AddContent2State extends State<AddContent2>{
                   color: Colors.grey.withOpacity(0.15),
                   thickness: 1,
                   height: 1,),
-                TimeSpinBox( initialMinutes: 0, initialSeconds: 0),
+                TimeSpinBox( initialMinutes: 0, initialSeconds: 0,
+                onChanged: (value){
+                  BrewTotalTime = value;
+                  //print(BrewTotalTime);
+                },),
 
                 Text('Total time of brew', style: TextStyle(fontFamily: "RobotoSlab", fontSize: 12, color: Colors.grey),),
                 SizedBox(height: 5,),
@@ -131,6 +151,9 @@ class _AddContent2State extends State<AddContent2>{
                 SizedBox(
                   width: 270,
                 child: TextFormField(
+                  onChanged: (value){
+                    BrewNotes = value;
+                  },
                   minLines: 3,
                   maxLines: 3,
                   decoration: InputDecoration(
@@ -177,6 +200,12 @@ class _AddContent2State extends State<AddContent2>{
                   ),
                   ElevatedButton(
                     onPressed: () {
+                      widget.brewData.brewCoarsness = BrewCoarsness;
+                      widget.brewData.brewCoffeeGrams = BrewCoffeeGrams;
+                      widget.brewData.brewWaterGrams = BrewWaterGrams;
+                      widget.brewData.brewWaterTemp = BrewWaterTemp;
+                      widget.brewData.brewTotalTime = BrewTotalTime;
+                      widget.brewData.brewNotes = BrewNotes;
                       widget.pageController.nextPage(
                         duration: Duration(milliseconds: 300),
                         curve: Curves.easeInOut,

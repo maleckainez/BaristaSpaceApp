@@ -6,12 +6,14 @@ class CustomScaleSlider extends StatefulWidget {
   final double minValue;
   final double maxValue;
   final double initialValue;
+  final ValueChanged<double>? onValueChanged;
 
   const CustomScaleSlider({
     super.key,
     required this.minValue,
     required this.maxValue,
     required this.initialValue,
+    required this.onValueChanged,
   });
 
   @override
@@ -46,6 +48,7 @@ class _CustomScaleSliderState extends State<CustomScaleSlider> {
 
     setState(() {
       currentValue = newValue;
+      widget.onValueChanged?.call(currentValue);
     });
     dragStartX = details.localPosition.dx;
   }

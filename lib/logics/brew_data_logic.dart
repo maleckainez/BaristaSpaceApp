@@ -10,6 +10,12 @@ class BrewData {
   String? originRoastType;
   String? originFarmAlt;
   String? originNotes;
+  double? brewCoarsness;
+  double? brewCoffeeGrams;
+  double? brewWaterGrams;
+  double? brewWaterTemp;
+  double? brewTotalTime;
+  String? brewNotes;
 
   BrewData({
     this.selectedRating = 0,
@@ -23,6 +29,12 @@ class BrewData {
     this.originRoastType,
     this.originFarmAlt,
     this.originNotes,
+    this.brewCoarsness = 0.0,
+    this.brewCoffeeGrams = 0.0,
+    this.brewWaterGrams = 0.0,
+    this.brewWaterTemp = 0.0,
+    this.brewTotalTime = 0.0,
+    this.brewNotes,
   });
 
 
@@ -41,6 +53,12 @@ class BrewData {
   Origin Roast Type: $originRoastType
   Origin Farm Altitude: $originFarmAlt
   Origin Notes: $originNotes
+  Gind Coarsness: $brewCoarsness
+  Coffee grams used: $brewCoffeeGrams
+  Water weight: $brewWaterGrams
+  Water temp: $brewWaterTemp
+  Total brew tine: $brewTotalTime
+  Brew Notes: $brewNotes
   ''';
     }
 
