@@ -64,7 +64,7 @@ class _TimeSpinBoxState extends State<TimeSpinBox> {
   }
 
   void _startLongPress(bool increment, bool isMinutes) {
-    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
       if (increment) {
         isMinutes ? _incrementMinutes() : _incrementSeconds();
       } else {
@@ -78,7 +78,14 @@ class _TimeSpinBoxState extends State<TimeSpinBox> {
     _timer = null;
   }
 
-  void _onSubmitted(String value) { final parts = value.split(':'); if (parts.length == 2) { final parsedMinutes = int.tryParse(parts[0].trim()); final parsedSeconds = int.tryParse(parts[1].trim()); if (parsedMinutes != null && parsedSeconds != null && parsedMinutes >= 0 && parsedMinutes < 60 && parsedSeconds >= 0 && parsedSeconds < 60) { _updateValue(parsedMinutes, parsedSeconds); } else { _controller.text = _formatTime(_currentMinutes, _currentSeconds); } } else { _controller.text = _formatTime(_currentMinutes, _currentSeconds); } }
+  void _onSubmitted(String value) {
+    final parts = value.split(':'); if (parts.length == 2) {
+      final parsedMinutes = int.tryParse(parts[0].trim());
+      final parsedSeconds = int.tryParse(parts[1].trim());
+      if (parsedMinutes != null && parsedSeconds != null && parsedMinutes >= 0 && parsedMinutes < 60 && parsedSeconds >= 0 && parsedSeconds < 60)
+      {_updateValue(parsedMinutes, parsedSeconds); }
+      else { _controller.text = _formatTime(_currentMinutes, _currentSeconds); } }
+    else { _controller.text = _formatTime(_currentMinutes, _currentSeconds); } }
 
   @override
   void dispose() {
@@ -115,7 +122,18 @@ class _TimeSpinBoxState extends State<TimeSpinBox> {
             controller: _controller,
             keyboardType: TextInputType.number,
             textAlign: TextAlign.center,
-            onSubmitted: _onSubmitted,
+            onSubmitted: _onSubmitted, // Keep validation on keyboard submission
+            onChanged: (value) {
+              // Pass raw value to onChanged without enforcing validation here
+              if (widget.onChanged != null) {
+                final parts = value.split(':');
+                if (parts.length == 2) {
+                  final parsedMinutes = int.tryParse(parts[0].trim()) ?? 0;
+                  final parsedSeconds = int.tryParse(parts[1].trim()) ?? 0;
+                  widget.onChanged!(parsedMinutes + parsedSeconds / 60.0);
+                }
+              }
+            },
             style: const TextStyle(fontSize: 16),
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -124,6 +142,8 @@ class _TimeSpinBoxState extends State<TimeSpinBox> {
             ),
           ),
         ),
+
+
         GestureDetector(
           onTap: _incrementMinutes,
           onLongPress: () => _startLongPress(true, true),

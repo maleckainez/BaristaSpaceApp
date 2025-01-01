@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AdvancedSpinBox extends StatefulWidget {
   final double initialValue;
@@ -56,7 +57,7 @@ class _AdvancedSpinBoxState extends State<AdvancedSpinBox> {
   }
 
   void _startLongPress(bool increment) {
-    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
       if (increment) {
         _updateValue(_currentValue + widget.acceleration);
       } else {
@@ -102,6 +103,9 @@ class _AdvancedSpinBoxState extends State<AdvancedSpinBox> {
         SizedBox(
           width: 140,
           child: TextField(
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[0-9]'),)
+            ],
             controller: _controller,
             keyboardType: TextInputType.number,
             textAlign: TextAlign.center,
