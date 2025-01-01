@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // For haptic feedback
-import 'dart:math'; // For math functions like cos and sin
+import 'package:flutter/services.dart';
+import 'dart:math';
 
 class CustomScaleSlider extends StatefulWidget {
   final double minValue;
@@ -20,6 +20,7 @@ class CustomScaleSlider extends StatefulWidget {
   _CustomScaleSliderState createState() => _CustomScaleSliderState();
 }
 
+
 class _CustomScaleSliderState extends State<CustomScaleSlider> {
   late double currentValue;
   double sliderWidth = 0;
@@ -28,7 +29,8 @@ class _CustomScaleSliderState extends State<CustomScaleSlider> {
   @override
   void initState() {
     super.initState();
-    currentValue = widget.initialValue;
+    currentValue = (widget.minValue + widget.maxValue)/2;
+    widget.onValueChanged?.call(currentValue);
   }
 
   void _onDragStart(DragStartDetails details) {

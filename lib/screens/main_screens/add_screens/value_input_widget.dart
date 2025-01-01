@@ -74,9 +74,17 @@ class _AdvancedSpinBoxState extends State<AdvancedSpinBox> {
   void _onSubmitted(String value) {
     final parsedValue = double.tryParse(value.replaceAll(widget.unit, '').trim());
     if (parsedValue != null) {
-      _updateValue(parsedValue);
+      if (parsedValue >= widget.min && parsedValue <= widget.max) {
+        setState(() {
+          _currentValue = parsedValue;
+          _controller.text = '${_currentValue.toStringAsFixed(1)} ${widget.unit}';
+          widget.onChanged?.call(_currentValue); // Wywołanie onChanged
+        });
+      } else {
+        _controller.text = '${_currentValue.toStringAsFixed(1)} ${widget.unit}'; // Przywrócenie poprzedniej wartości
+      }
     } else {
-      _controller.text = '${_currentValue.toStringAsFixed(1)} ${widget.unit}';
+      _controller.text = '${_currentValue.toStringAsFixed(1)} ${widget.unit}'; // Przywrócenie poprzedniej wartości
     }
   }
 
@@ -103,13 +111,10 @@ class _AdvancedSpinBoxState extends State<AdvancedSpinBox> {
         SizedBox(
           width: 140,
           child: TextField(
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'[0-9]'),)
-            ],
             controller: _controller,
             keyboardType: TextInputType.number,
             textAlign: TextAlign.center,
-            onSubmitted: _onSubmitted,
+            onChanged: _onSubmitted,
             style: const TextStyle(fontSize: 16),
             decoration: InputDecoration(
               border: InputBorder.none,
