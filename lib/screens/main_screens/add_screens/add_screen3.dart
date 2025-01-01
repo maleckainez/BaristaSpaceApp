@@ -1,7 +1,4 @@
 import 'package:dzienniczek_baristy/logics/new_post_logic.dart';
-import 'package:dzienniczek_baristy/screens/main_screens/add_screens/slideChart.dart';
-import 'package:dzienniczek_baristy/screens/main_screens/add_screens/time_spin_box.dart';
-import 'package:dzienniczek_baristy/screens/main_screens/add_screens/value_input_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../logics/brew_data_logic.dart';
@@ -11,12 +8,13 @@ class AddContent3 extends StatefulWidget{
   @override
   final PageController pageController;
   final BrewData brewData;
+
   AddContent3({required this.pageController,required this.brewData});
   _AddContent3State createState() => _AddContent3State();
 }
 class _AddContent3State extends State<AddContent3>{
-
   @override
+  bool monVal = false;
   Widget build(BuildContext context) {
     return Center(
         child:  SingleChildScrollView(
@@ -53,7 +51,7 @@ class _AddContent3State extends State<AddContent3>{
                           fontWeight: FontWeight.bold,
                           color: Colors.grey,
                         ),),
-                        Text("Sensory details",style:
+                        Text("Post new recepie",style:
                         TextStyle(
                           fontFamily: "RobotoSlab",
                           fontWeight: FontWeight.bold,
@@ -64,9 +62,28 @@ class _AddContent3State extends State<AddContent3>{
                       color: Colors.grey.withOpacity(0.3),
                       thickness: 1,
                       height: 1,),
-                    SizedBox(height: 20,),
+                    SizedBox(height: 90,),
+                    CheckboxListTile(
+                      checkColor: Colors.green,
+                      activeColor: Color(0x51707070),
+                      dense: true,
+                      contentPadding: EdgeInsets.all(0),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      title: Text('Make this post Public',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey
+                      ),),
+                      value: monVal,
+                      onChanged:  (value) {
+                        setState(() {
+                          monVal = value!;
+                          widget.brewData.isPublic = value;
+                          print(value);
+                        });
+                      },
+                    ),
 
-                    SizedBox(height: 70,),
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                       ElevatedButton(
                         onPressed: () {

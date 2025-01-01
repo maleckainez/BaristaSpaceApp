@@ -36,6 +36,7 @@ class _AdvancedSpinBoxState extends State<AdvancedSpinBox> {
     super.initState();
     _currentValue = widget.initialValue;
     _controller = TextEditingController(text: '${_currentValue.toStringAsFixed(1)} ${widget.unit}');
+    widget.onChanged?.call(_currentValue);
   }
 
   void _updateValue(double newValue) {

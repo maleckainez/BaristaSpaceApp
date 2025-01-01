@@ -24,6 +24,7 @@ Future<void> AddNewPost(BrewData brewData) async {
       'rating': brewData.selectedRating,
       'brew_date': brewData.brewDate,
       'brew_method' : brewData.brewMethod,
+      'is_public': brewData.isPublic,
     });
     txn.insert('post_origin_details', {
       'post_id': postId,

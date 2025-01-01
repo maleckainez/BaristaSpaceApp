@@ -17,6 +17,7 @@ class BrewData {
   double? brewWaterTemp;
   double? brewTotalTime;
   String? brewNotes;
+  bool? isPublic;
 
   BrewData({
     this.selectedRating = 0,
@@ -37,6 +38,7 @@ class BrewData {
     this.brewWaterTemp = 0.0,
     this.brewTotalTime = 0.0,
     this.brewNotes,
+    this.isPublic = false,
   });
 
 
@@ -61,6 +63,7 @@ class BrewData {
   Water temp: $brewWaterTemp
   Total brew tine: $brewTotalTime
   Brew Notes: $brewNotes
+  isPublic: $isPublic
   ''';
     }
 

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:cryptography/cryptography.dart';
 import 'dart:convert';
 import 'package:sqflite/sqflite.dart';

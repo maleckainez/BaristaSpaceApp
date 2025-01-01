@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../logics/register_logic.dart';
 
 Future<List<Map<String, dynamic>>> fetchPosts() async {
@@ -10,7 +9,8 @@ Future<List<Map<String, dynamic>>> fetchPosts() async {
         up.user_id, 
         up.rating, 
         up.brew_date, 
-        up.brew_method, 
+        up.brew_method,
+        up.is_public, 
         pod.country_origin, 
         pod.region, 
         pod.processing, 
@@ -93,6 +93,7 @@ class HomeScreen extends StatelessWidget {
                         Text('Water Weight: ${post['water_weight'] ?? 'Unknown'}'),
                         Text('Water Temperature: ${post['water_temp'] ?? 'Unknown'}'),
                         Text('Total Time: ${post['total_time'] ?? 'Unknown'}'),
+                        Text('isPublic: ${post['is_public'] ?? 'Unknown'}'),
                       ],
                     ),
                   ),
