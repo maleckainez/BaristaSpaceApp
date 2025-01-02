@@ -14,7 +14,8 @@ class WikiElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
+      child: Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(40),
         boxShadow: [
@@ -55,6 +56,6 @@ class WikiElement extends StatelessWidget {
           ),)
         ],
       )),
-    );
+      ));
   }
 }
