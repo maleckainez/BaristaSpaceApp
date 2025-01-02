@@ -1,4 +1,5 @@
 import 'package:dzienniczek_baristy/logics/pull_posts.dart';
+import 'package:dzienniczek_baristy/screens/home_screens/posts_w_gesture.dart';
 import 'package:dzienniczek_baristy/screens/main_screens/wiki_element.dart';
 import 'package:flutter/material.dart';
 
@@ -46,18 +47,7 @@ class _PublicPostsScreenState extends State<PublicPostsScreen> {
               if (filteredPosts.isEmpty){
                 return const Center(child: Text("No post yet"),);
               }
-              return ListView.separated(
-                separatorBuilder: (context, index) => SizedBox(height: 16,),
-                itemCount: filteredPosts.length,
-                  itemBuilder: (context, index) {
-                  var post = filteredPosts[index];
-                  return ConstrainedBox(constraints: BoxConstraints(maxWidth: 350),
-                  child:
-                    WikiElement(
-                    title: (post['user_id'] ?? 'Unknown Method').toString(),
-                    subtitle: ('Public: ${post['is_public']}' ),
-                    description: 'Rating: ${post['rating'] ?? 'N/A'}\nBrew Date: ${post['brew_date'] ?? 'Unknown'}')
-                    ,);} );
+              return PostWGesture(filteredPosts: filteredPosts);
             }});
     }});
     }
