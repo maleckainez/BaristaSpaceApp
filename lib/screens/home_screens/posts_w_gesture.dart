@@ -1,6 +1,8 @@
 import 'package:dzienniczek_baristy/logics/delete_post_logic.dart';
 import 'package:flutter/material.dart';
 
+import '../main_screens/wiki_element.dart';
+
 class PostWGesture extends StatelessWidget {
   final List<Map<String, dynamic>> filteredPosts;
   final VoidCallback onDeleted;
@@ -62,19 +64,15 @@ class PostWGesture extends StatelessWidget {
             });
           },
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 350),
-            child: Card(
-              child: ListTile(
-                title: Text((post['user_id'] ?? 'Unknown Method').toString()),
-                subtitle: Text('Public: ${post['is_public']}'),
-                isThreeLine: true,
-                dense: true,
-                trailing: Text(
-                  'Rating: ${post['rating'] ?? 'N/A'}\nBrew Date: ${post['brew_date'] ?? 'Unknown'}',
-                  style: TextStyle(fontSize: 12),
-                ),
-              ),
-            ),
+            constraints: BoxConstraints(maxWidth: 300),
+              child:
+              WikiElement(
+                  title: '${(post['brew_method']?.isNotEmpty ?? false) ? post['brew_method'] : 'Coffee'} by user ${(post['user_id'])}',
+                  subtitle: ('A brew from ${post['brew_date']}, posted on ${post['published']}' ),
+                  description: 'Rating: ${post['rating'] ?? 'N/A'}\nCoffee beans from: ${(post['country_origin']?.isNotEmpty ?? false) ? post['country_origin'] : 'Unknown'} ${post['region']}')
+
+
+
           ),
         );
       },

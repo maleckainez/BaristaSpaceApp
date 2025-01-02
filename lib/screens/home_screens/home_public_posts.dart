@@ -17,8 +17,14 @@ class _PublicPostsScreenState extends State<PublicPostsScreen> {
     postFuture = _fetchPostsWithUserId();
   }
 
+  Future<int?> _getUserId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final id = prefs.getString('user_id');
+    return id != null ? int.tryParse(id) : null;
+  }
+
   Future<List<Map<String, dynamic>>> _fetchPostsWithUserId() async {
-    final userId = await _getUserId();
+    final userId = await _getUserId;
     final posts = await fetchPosts();
 
     // Filter posts based on conditions
@@ -31,11 +37,6 @@ class _PublicPostsScreenState extends State<PublicPostsScreen> {
     });
   }
 
-  Future<int?> _getUserId() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final id = prefs.getString('user_id');
-    return id != null ? int.tryParse(id) : null;
-  }
 
   @override
   Widget build(BuildContext context) {

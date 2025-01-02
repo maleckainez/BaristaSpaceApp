@@ -10,6 +10,7 @@ Future<List<Map<String, dynamic>>> fetchPosts() async {
         up.rating, 
         up.brew_date, 
         up.brew_method,
+        up.published,
         up.is_public, 
         pod.country_origin, 
         pod.region, 

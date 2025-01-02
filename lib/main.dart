@@ -1,4 +1,6 @@
+import 'package:dzienniczek_baristy/logics/sharedpreferences_logic.dart';
 import 'package:dzienniczek_baristy/screens/login_screen.dart';
+import 'package:dzienniczek_baristy/screens/white_screen.dart';
 //import 'package:dzienniczek_baristy/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'logics/register_logic.dart';
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.brown,
         scaffoldBackgroundColor: Colors.white,
     ),
-      home: LoginScreen(),
+      home: WhiteScreen(),
     );
   }
 }
