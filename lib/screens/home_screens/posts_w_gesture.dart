@@ -1,9 +1,12 @@
+import 'package:dzienniczek_baristy/logics/delete_post_logic.dart';
 import 'package:flutter/material.dart';
 
 class PostWGesture extends StatelessWidget {
   final List<Map<String, dynamic>> filteredPosts;
+  final VoidCallback onDeleted;
 
-  const PostWGesture({Key? key, required this.filteredPosts})
+  const PostWGesture({Key? key, required this.filteredPosts,
+  required this.onDeleted})
       : super(key: key);
 
   @override
@@ -34,8 +37,8 @@ class PostWGesture extends StatelessWidget {
                   child: Text('Edit'),
                 ),
                 PopupMenuItem(
-                  value: 'modify',
-                  child: Text('Modify'),
+                  value: 'delete',
+                  child: Text('Delete'),
                 ),
                 PopupMenuItem(
                   value: 'preview',
@@ -43,10 +46,16 @@ class PostWGesture extends StatelessWidget {
                 ),
               ],
             ).then((value) {
+              var userId = post["user_id"];
+              print(userId);
+              var postId = post['post_id'];
+              print(postId);
               if (value == 'edit') {
                 print('Edit selected');
-              } else if (value == 'modify') {
-                print('Modify selected');
+              } else if (value == 'delete') {
+                print('Delete selected');
+                DeletePostAction(userId, postId);
+                onDeleted();
               } else if (value == 'preview') {
                 print('Preview selected');
               }
