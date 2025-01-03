@@ -23,7 +23,7 @@ class WikiElement extends StatelessWidget {
             color: Colors.grey.withOpacity(0.3),
             spreadRadius: 2,
             blurRadius: 7,
-            offset: Offset(2, 2), // Przesunięcie cienia
+            offset: Offset(2, 2),
           ),
         ],
         color: Colors.white,

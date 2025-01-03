@@ -1,6 +1,5 @@
 import 'package:cryptography/cryptography.dart';
 import 'dart:convert';
-import 'package:sqflite/sqflite.dart';
 import 'package:dzienniczek_baristy/logics/register_logic.dart';
 import 'package:tuple/tuple.dart';
 
