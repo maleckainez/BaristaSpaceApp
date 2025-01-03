@@ -30,4 +30,5 @@ Future<void> isLoginValid(BuildContext context) async {
   final password = prefs.getString('password') ?? '';
   final isValid = await passwordValidator(password, email);
   if (isValid) {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => navbarMainScreen()));
-}}
+} else {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));}
+}

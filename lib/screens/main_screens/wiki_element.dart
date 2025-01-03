@@ -23,7 +23,7 @@ class WikiElement extends StatelessWidget {
             color: Colors.grey.withOpacity(0.3),
             spreadRadius: 2,
             blurRadius: 7,
-            offset: Offset(2, 2), // Przesunięcie cienia
+            offset: Offset(2, 2),
           ),
         ],
         color: Colors.white,
@@ -37,7 +37,7 @@ class WikiElement extends StatelessWidget {
         children: [
           Text(title,
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 18,
             fontWeight: FontWeight.w900,
             fontFamily: 'RobotoSlab',
 
@@ -46,7 +46,7 @@ class WikiElement extends StatelessWidget {
           Text(subtitle,
           style: TextStyle(
             fontFamily: 'RobotoSlab',
-            fontSize: 10,
+            fontSize: 12,
           ),),
           SizedBox(height: 15,),
           Text(description,

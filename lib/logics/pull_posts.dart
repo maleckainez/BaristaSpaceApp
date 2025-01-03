@@ -4,11 +4,13 @@ Future<List<Map<String, dynamic>>> fetchPosts() async {
   final db = await loadDatabase();
   try {
     final result = await db.rawQuery('''
-      SELECT 
+      SELECT
+        up.post_id, 
         up.user_id, 
         up.rating, 
         up.brew_date, 
         up.brew_method,
+        up.published,
         up.is_public, 
         pod.country_origin, 
         pod.region, 
