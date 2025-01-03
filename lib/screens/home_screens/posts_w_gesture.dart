@@ -1,4 +1,5 @@
 import 'package:dzienniczek_baristy/logics/delete_post_logic.dart';
+import 'package:dzienniczek_baristy/screens/home_screens/post_detail.dart';
 import 'package:flutter/material.dart';
 
 import '../main_screens/wiki_element.dart';
@@ -20,7 +21,6 @@ class PostWGesture extends StatelessWidget {
         var post = filteredPosts[index];
         return InkWell(
           onTap: () {
-            // Navigate to detail page or show post details
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -29,7 +29,6 @@ class PostWGesture extends StatelessWidget {
             );
           },
           onLongPress: () {
-            // Show menu for edit, modify, preview
             showMenu(
               context: context,
               position: RelativeRect.fromLTRB(100, 200, 0, 0),
@@ -54,6 +53,12 @@ class PostWGesture extends StatelessWidget {
               print(postId);
               if (value == 'edit') {
                 print('Edit selected');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PostDetailEdit(post: post),
+                  ),
+                );
               } else if (value == 'delete') {
                 print('Delete selected');
                 DeletePostAction(userId, postId);
@@ -80,27 +85,3 @@ class PostWGesture extends StatelessWidget {
   }
 }
 
-class PostDetailScreen extends StatelessWidget {
-  final Map<String, dynamic> post;
-
-  const PostDetailScreen({Key? key, required this.post}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Post Details')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('User ID: ${post['user_id']}'),
-            Text('Rating: ${post['rating']}'),
-            Text('Brew Date: ${post['brew_date']}'),
-            Text('Brew Method: ${post['brew_method']}'),
-          ],
-        ),
-      ),
-    );
-  }
-}
